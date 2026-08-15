@@ -1,0 +1,125 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Enterprise-scale GitHub consolidation, governance, and modern development practices.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.site} />
+    <meta property="og:image" content={new URL('/og-image.png', Astro.site)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL('/og-image.png', Astro.site)} />
+    <script is:inline>
+      const stored = localStorage.getItem('color-scheme');
+      document.documentElement.setAttribute('data-theme', stored === 'light' ? 'light' : 'dark');
+    </script>
+    <style is:global>
+      html[data-theme='dark'] {
+        --color-bg: #272822;
+        --color-text: #f8f8f2;
+        --color-text-secondary: #a6acaf;
+        --color-accent: #66d9ef;
+        --color-highlight: #f92672;
+        --color-border: #3e3d32;
+        --color-card-bg: #3e3d32;
+      }
+
+      html[data-theme='light'] {
+        --color-bg: #fafaf7;
+        --color-text: #272822;
+        --color-text-secondary: #75715e;
+        --color-accent: #0b7285;
+        --color-highlight: #c2255c;
+        --color-border: #e3e1d3;
+        --color-card-bg: #f2f1e4;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-family: system-ui, -apple-system, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--color-text);
+        background-color: var(--color-bg);
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        transition: background-color 0.2s, color 0.2s;
+      }
+
+      main {
+        flex: 1;
+      }
+
+      a {
+        color: var(--color-accent);
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+
+      a:hover {
+        opacity: 0.8;
+      }
+
+      h1, h2, h3 {
+        font-weight: 600;
+        line-height: 1.2;
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
+      }
+
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 2rem; }
+      h3 { font-size: 1.5rem; }
+
+      p {
+        margin-bottom: 1em;
+        color: var(--color-text-secondary);
+      }
+
+      button {
+        background-color: var(--color-accent);
+        color: var(--color-bg);
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+
+      button:hover {
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
